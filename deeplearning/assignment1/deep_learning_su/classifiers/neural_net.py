@@ -199,7 +199,11 @@ class TwoLayerNet(object):
 
     y_pred = np.zeros(X.shape[0])
 
-    scores = (X.dot(self.params['W1']) + self.params['b1']).dot(self.params['W2']) + self.params['b2'] # (N, C)
+    first_layer = X.dot(self.params['W1']) + self.params['b1'];
+
+    ReLU = np.maximum(0,first_layer)
+
+    scores = ReLU.dot(self.params['W2']) + self.params['b2'] # (N, C)
 
     y_pred = np.argmax(scores, axis = 1)
 
